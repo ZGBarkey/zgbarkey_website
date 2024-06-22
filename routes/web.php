@@ -1,32 +1,18 @@
 <?php
 
-use App\Models\Visit;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (Request $request) {
-    $requestIP = $request->ip();
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-    $headers = $request->header();
-    $headerString = "";
-
-    foreach($headers as $header => $value){
-
-        if(is_array($value)){
-            $value = implode(',', $value);
-        }
-
-        $headerString .= $header . ": " . $value . " ; \n";
-
-    }
-    $fullData = $headerString;
-
-    $visit = new Visit;
-
-    $visit->IP_address = $requestIP;
-    $visit->data = $fullData;
-
-    $visit->save();
-
+Route::get('/', function () {
     return view('welcome');
 });
